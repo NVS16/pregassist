@@ -18,15 +18,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/signup', signup.UserSignup);
 
-router.post('/login', login.UserSignup);
+router.post('/login', login.UserLogin);
 
-router.get('/workers-list', workers.ListAllWorkers);
 
-router.get('/patients-list', patients.ListAllPatients);
 
-router.get('/find-workers', workers.FindWorkers);
-
-router.get('/find-patients', patients.FindPatients);
 
 
 module.exports = router;

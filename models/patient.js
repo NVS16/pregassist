@@ -10,9 +10,9 @@ var patientSchema = new Schema({
     date: { type: String },
     contact: { type: String , unique : true },
     address: { type: String },
-    conceive : { type: Boolean },
+    doc: { type: String },
     dob: { type: String },
-    complications : [{ type: String }],
+    complications : { type: String },
     expectedDate : { type: String },
     workerID : {
         type: Schema.Types.ObjectId,
@@ -25,8 +25,7 @@ var patientSchema = new Schema({
     height : { type: String },
     weight: { type: String },
     allergy : { type: String },
-    delivery_count : { type : String },
-    password : { type : String }
+    delivery_count : { type : String }
 });
 
 var patientModel = mongoose.model('patient', patientSchema);
