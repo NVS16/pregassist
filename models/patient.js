@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var patientSchema = new Schema({
+    patid: {type: Number},
     name: { type: String },
     date: { type: String },
     contact: { type: String , unique : true },

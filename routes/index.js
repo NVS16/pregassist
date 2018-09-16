@@ -42,6 +42,10 @@ router.get("/diet_plan", function(req, res, next) {
     res.render('diet_plan.ejs');
 });
 
+router.get("/records_upload", function(req, res, next) {
+    res.render('records_upload.ejs', {files: []});
+});
+
 router.get("/asha_list", function(req, res, next) {
     workerModel.find({}, function(err, docs) {
         if (err) throw err;
@@ -49,6 +53,17 @@ router.get("/asha_list", function(req, res, next) {
         res.render("asha_list.ejs", { "workers": docs });
     });
 });
+// router.get('/get_records/:patid', (req, res) => {
+//     //console.log("Hello", req.body["patid"])
+//     console.log("Helloooo", req.params.patid);
+//
+//             res.json("lajhkaj");
+//
+// });
+//
+// router.get("/get_records/", function(req, res, next) {
+//     res.render("records_upload.ejs", { "files": False });
+// });
 
 
 
