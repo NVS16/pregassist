@@ -47,6 +47,7 @@ router.get("/records_upload", function(req, res, next) {
 });
 
 router.get("/asha_list", function(req, res, next) {
+    //console.log()
     workerModel.find({}, function(err, docs) {
         if (err) throw err;
         console.log(docs);

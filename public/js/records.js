@@ -7,10 +7,10 @@ $(document).ready(function () {
         var patid = $("#patid").val();
         $.get('/get_records/' + patid, function (files, status) {
             console.log(files);
-            var insert_html = "";
+            var insert_html = "<h2 class='page-title'>Found Records</h2><br>";
         if(files){
             files.forEach(function(f) {
-                insert_html+="<h2 class='page-title'>Found Records</h2><br><span class='pictures'>";
+                insert_html+="<span class='pictures'>";
 
                 if (f.isImage) {
                     insert_html+="<img class = 'img-thumbnail'src='image\/" + f.filename + "\/' alt=''>";

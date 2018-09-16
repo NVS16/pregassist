@@ -23,10 +23,25 @@ var app = express();
 const mongoURI = 'mongodb://localhost:27017/illuminati';
 
 // Create mongo connection
-const conn = mongoose.createConnection(mongoURI);
+// const conn = mongoose.createConnection(mongoURI , { useNewUrlParser: true });
 
 let gfs;
 
+mongoose.connect(mongoURI, { useMongoClient: true });
+
+var db = mongoose.connection;
+
+db.once('open', function () {
+    console.log("Connection to MongoDB succesful...");
+    //console.log("Connection to MongoDB successful...");
+    gfs = Grid(db.db, mongoose.mongo);
+    gfs.collection('uploads');
+}).on('error', function (error) {
+    console.log("MongoDB connection error: ", error);
+});
+
+
+/*
 conn.once('open', () => {
     // Init stream
     console.log("Connection to MongoDB successful...");
@@ -34,7 +49,7 @@ conn.once('open', () => {
     gfs.collection('uploads');
 }).on('error', function(error) {
     console.log("MongoDB connection error: ", error);
-});
+});*/
 
 // Create storage engine
 const storage = new GridFsStorage({
@@ -64,10 +79,10 @@ app.get('/get_records/:patid', (req, res) => {
     //console.log("Hello", req.body["patid"])
     var p = req.params.patid;
     console.log("Helloooo", p);
-    gfs.files.find({metadata: {"patid": p}}).toArray((err, files) => {
+    gfs.files.find({ metadata: { "patid": p } }).toArray((err, files) => {
         // Check if files
         if (!files || files.length === 0) {
-            res.render('records_upload', {files: false});
+            res.render('records_upload', { files: false });
         } else {
             files.map(file => {
                 if (
@@ -150,14 +165,14 @@ app.use('/', index);
 app.use('/api', api);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
