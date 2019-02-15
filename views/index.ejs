@@ -48,6 +48,16 @@
                                         <label>Password *</label>
                                         <input type="password" class="form-control p_input" id="password">
                                     </div>
+                                    <div class="form-group" class="form-control p_input" >
+                                        <label>Type</label>
+                                        <select id="type">
+                                            <option>Patient</option>
+                                            <option>PHC</option>
+                                            <option>AWC</option>
+                                            <option>NGO</option>
+                                            <option>Govt.</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group d-flex align-items-center justify-content-between">
                                         <div class="icheck-square">
                                             <input tabindex="1" type="checkbox" id="remember">
@@ -136,6 +146,7 @@
     <script src="js/chart.js"></script>
     <script src="js/sparkline.js"></script>
     <script src="js/progress-bar.js"></script>
+    <script src="js/login.js"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="text/javascript">
         /////////////////////////////////////////////////////////////////////////////////////////
@@ -148,20 +159,6 @@
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE
             }, 'google_translate_element');
         }
-
-        $(document).ready(function() {
-            // Defining the Login Feature.
-            $("#login").submit(function(event) {
-                event.preventDefault();
-                uname = $("#username").val();
-                password = $("#password").val();
-                if (uname === "Deepak123" && password === "12345") {
-                    location.href = "/dashboard";
-                } else {
-                    alert("Wrong username or password.");
-                }
-            });
-        });
     </script>
 </body>
 

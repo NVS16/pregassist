@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var patientSchema = new Schema({
-    patid: {type: Number},
+    userid: {type: String},
     name: { type: String },
     date: { type: String },
     contact: { type: String , unique : true },
@@ -26,7 +26,9 @@ var patientSchema = new Schema({
     height : { type: String },
     weight: { type: String },
     allergy : { type: String },
-    delivery_count : { type : String }
+    delivery_count : { type : String }, 
+    email: {type: String}, 
+    password: {type: String}
 });
 
 var patientModel = mongoose.model('patient', patientSchema);
